@@ -21,14 +21,7 @@ int IIR2::process(AudioBuffer *inbuf, AudioBuffer *outbuf)
             yj[1] = yj[0];
             yj[0] = b[0] * xj[0] + b[1] * xj[1] + b[2] * xj[2] - a[1] * yj[1] - a[2] * yj[2];
 
-            int16_t tmp;
-            if (yj[0] > 32767)
-                tmp = 32767;
-            else if (yj[0] < -32768)
-                tmp = -32768;
-            else
-                tmp = (int16_t) yj[0];
-            outbuf->buf[i * inbuf->ch + j] = tmp;
+            outbuf->buf[i * inbuf->ch + j] = (int16_t)std::min(32767, std::max(-32768, (int32_t)yj[0]));
         }
     }
 
