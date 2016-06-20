@@ -1,6 +1,7 @@
 #ifndef COMMON_H
 #define COMMON_H
 
+#include <vector>
 #include <cstdint>
 #include <cmath>
 
@@ -26,5 +27,23 @@ typedef enum
     PeakingEQ,
     FilterTypeNum
 } FilterType;
+
+/* check if a vector is nondecreasing */
+bool isNonDecrease(std::vector<double> v);
+
+/* round towards zero */
+inline int fix(double x)
+{
+    return (int)x;
+}
+
+/* next higher power of 2 */
+inline int nextpow2(int i)
+{
+    return ceil(log2(std::abs(i)));
+}
+
+/* linear interp */
+double interp1(std::vector<double> x, std::vector<double> v, double xq);
 
 #endif // COMMON_H
