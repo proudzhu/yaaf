@@ -1,4 +1,5 @@
-include_directories(${yaaf_SOURCE_DIR}/include)
+include_directories(${yaaf_SOURCE_DIR}/include
+                    ${yaaf_SOURCE_DIR}/vendor/fftw3)
 
 add_library(yaaf
 			common.cpp
@@ -7,4 +8,6 @@ add_library(yaaf
 			vibrato.cpp
 			firCommon.cpp
 			fir2.cpp
+			fft.cpp
+			window.cpp
 		   )

@@ -1,4 +1,5 @@
 include_directories(${yaaf_SOURCE_DIR}/include)
+link_directories(${yaaf_SOURCE_DIR}/vendor/fftw3)
 
 add_library(test_main test_main.cpp)
 
@@ -16,3 +17,6 @@ target_link_libraries(test_common test_main yaaf)
 
 add_executable(test_fir test_fir.cpp)
 target_link_libraries(test_fir test_main yaaf)
+
+add_executable(test_fir2 test_fir2.cpp)
+target_link_libraries(test_fir2 test_main yaaf fftw3 m)

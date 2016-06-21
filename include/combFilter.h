@@ -33,14 +33,14 @@ private:
 };
 
 // specify comb filter type
-class firCombFilter : combFilter
+class firCombFilter : public combFilter
 {
     firCombFilter(int delay, double bl, double ff, int ch = 1)
         : combFilter(delay, bl, 0, ff, ch)
     { }
 };
 
-class iirCombFilter : combFilter
+class iirCombFilter : public combFilter
 {
     iirCombFilter(int delay, double fb, int ch = 1)
         : combFilter(delay, 1, fb, 0, ch)
@@ -48,14 +48,14 @@ class iirCombFilter : combFilter
 
 };
 
-class allpassCombFilter : combFilter
+class allpassCombFilter : public combFilter
 {
     allpassCombFilter(int delay, double bl, int ch = 1)
         : combFilter(delay, bl, -bl, 1, ch)
     { }
 };
 
-class delayCombFilter : combFilter
+class delayCombFilter : public combFilter
 {
     delayCombFilter(int delay, int ch = 1)
         : combFilter(delay, 0, 0, 1, ch)

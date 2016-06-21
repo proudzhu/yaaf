@@ -17,9 +17,9 @@ public:
 
     void setCoeffs(std::vector<double> b);
 
-private:
     std::vector<double> b;
 
+private:
     std::vector<std::vector<double>> delayLine;
 
     void updateDelayLine(double xh, int ch);
