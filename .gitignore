@@ -1,4 +1,5 @@
 build/
 pcms/
+vendor/
 
 CMakeLists.txt.user
