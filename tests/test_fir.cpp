@@ -18,23 +18,23 @@ TEST_CASE("firCommon process") {
     int16_t bufout[10] = {0};
     int16_t expectout[10] = {1000,2500,4250,2125,1000,375,0,0,0,0};
 
-    AudioBuffer *inbuf = new AudioBuffer();
+    auto inbuf = std::make_unique<AudioBuffer>();
     inbuf->ch = 1;
     inbuf->fs = 44100;
     inbuf->samples = sizeof(bufin) / sizeof(bufin[0]);
     inbuf->buf = bufin;
 
-    AudioBuffer *outbuf = new AudioBuffer();
+    auto outbuf = std::make_unique<AudioBuffer>();
     outbuf->ch = 1;
     outbuf->fs = 44100;
     outbuf->samples = sizeof(bufout) / sizeof(bufout[0]);
     outbuf->buf = bufout;
 
     std::vector<double> b{1,0.5,0.25,0.125,0,0,0,0};
-    FirCommon *fir = new FirCommon();
+    auto fir = std::make_unique<FirCommon>();
     fir->SetCoeffs(b);
 
-    fir->Process(inbuf, outbuf);
+    fir->Process(inbuf.get(), outbuf.get());
 
     REQUIRE(check_array(bufout, expectout, 10));
 }
