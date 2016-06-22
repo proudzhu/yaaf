@@ -1,7 +1,7 @@
 #include <cassert>
-#include "firCommon.h"
+#include "fir_common.h"
 
-void firCommon::updateDelayLine(double xh, int ch)
+void FirCommon::UpdateDelayLine(double xh, int ch)
 {
     auto &v = delayLine[ch];
     int i;
@@ -12,7 +12,7 @@ void firCommon::updateDelayLine(double xh, int ch)
     v[0] = xh;
 }
 
-int firCommon::process(AudioBuffer *inbuf, AudioBuffer *outbuf)
+int FirCommon::Process(AudioBuffer *inbuf, AudioBuffer *outbuf)
 {
     assert(inbuf->ch == outbuf->ch);
     assert(inbuf->fs == outbuf->fs);
@@ -22,7 +22,7 @@ int firCommon::process(AudioBuffer *inbuf, AudioBuffer *outbuf)
     for (int i = 0; i < inbuf->samples / inbuf->ch; i++) {
         for (int j = 0; j < inbuf->ch; j++) {
             double xh = inbuf->buf[i * inbuf->ch + j];
-            updateDelayLine(xh, j);
+            UpdateDelayLine(xh, j);
 
             double tmp = 0.0;
             for (int k = 0; k < b.size(); k++)
@@ -35,12 +35,12 @@ int firCommon::process(AudioBuffer *inbuf, AudioBuffer *outbuf)
     return inbuf->samples;
 }
 
-void firCommon::reset(void)
+void FirCommon::Reset(void)
 {
     return;
 }
 
-void firCommon::setCoeffs(std::vector<double> coeffs)
+void FirCommon::SetCoeffs(std::vector<double> coeffs)
 {
     b = coeffs;
     delayLine.resize(1, std::vector<double>(b.size(), 0));

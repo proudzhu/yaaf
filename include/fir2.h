@@ -3,21 +3,21 @@
 
 #include <vector>
 #include <memory>
-#include "firCommon.h"
+#include "fir_common.h"
 
-class fir2 : public firCommon
+class Fir2 : public FirCommon
 {
 public:
-    fir2(int n, std::vector<double> f, std::vector<double> a)
-        : fir2(n, f, a, std::vector<double>())
+    Fir2(int n, std::vector<double> f, std::vector<double> a)
+        : Fir2(n, f, a, std::vector<double>())
     { }
 
-    fir2(int n, std::vector<double> f, std::vector<double> a, std::vector<double> window);
+    Fir2(int n, std::vector<double> f, std::vector<double> a, std::vector<double> window);
 
-    ~fir2() {}
+    ~Fir2() {}
 
 private:
-    void calcCoeffs(int n, std::vector<double> f, std::vector<double> a, std::vector<double> window);
+    void CalcCoeffs(int n, std::vector<double> f, std::vector<double> a, std::vector<double> window);
 };
 
 #endif // FIR2_H

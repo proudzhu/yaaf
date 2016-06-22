@@ -1,6 +1,6 @@
 #include <fstream>
 #include <memory>
-#include "combFilter.h"
+#include "comb_filter.h"
 
 int main(int argc, char **argv)
 {
@@ -26,7 +26,7 @@ int main(int argc, char **argv)
     std::ifstream input(argv[1], std::ios::binary);
     std::ofstream output(argv[2], std::ios::binary);
 
-    combFilter *comb = new combFilter(10, 0.5, -0.5, 1, inbuf->ch);
+    CombFilter *comb = new CombFilter(10, 0.5, -0.5, 1, inbuf->ch);
 
     int eof = 0;
     while (eof == 0) {
@@ -35,7 +35,7 @@ int main(int argc, char **argv)
             eof = 1;
             outbuf->samples = inbuf->samples = input.gcount() / 2;
         }
-        comb->process(inbuf, outbuf);
+        comb->Process(inbuf, outbuf);
 
         output.write(reinterpret_cast<char *>(bufout), sizeof(bufout));
     }

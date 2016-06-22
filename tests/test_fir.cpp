@@ -1,6 +1,6 @@
 #include "Catch/single_include/catch.hpp"
 
-#include "firCommon.h"
+#include "fir_common.h"
 #include "common.h"
 
 bool check_array(int16_t *x, int16_t *y, int size)
@@ -31,10 +31,10 @@ TEST_CASE("firCommon process") {
     outbuf->buf = bufout;
 
     std::vector<double> b{1,0.5,0.25,0.125,0,0,0,0};
-    firCommon *fir = new firCommon();
-    fir->setCoeffs(b);
+    FirCommon *fir = new FirCommon();
+    fir->SetCoeffs(b);
 
-    fir->process(inbuf, outbuf);
+    fir->Process(inbuf, outbuf);
 
     REQUIRE(check_array(bufout, expectout, 10));
 }

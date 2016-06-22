@@ -24,7 +24,7 @@ int main(int argc, char **argv)
     std::ifstream input(argv[1], std::ios::binary);
     std::ofstream output(argv[2], std::ios::binary);
 
-    IIR2 *iir2 = new IIR2(freq, fs, inbuf->ch, type, sqrt(2)/2, 0);
+    Iir2 *iir2 = new Iir2(freq, fs, inbuf->ch, type, sqrt(2)/2, 0);
 
     int eof = 0;
     while (eof == 0) {
@@ -33,7 +33,7 @@ int main(int argc, char **argv)
             eof = 1;
             outbuf->samples = inbuf->samples = input.gcount() / 2;
         }
-        iir2->process(inbuf, outbuf);
+        iir2->Process(inbuf, outbuf);
 
         output.write(reinterpret_cast<char *>(buf), sizeof(buf));
     }

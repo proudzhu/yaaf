@@ -1,7 +1,7 @@
 #include <cassert>
 #include "fft.h"
 
-fft::fft(int n, int fftSign, int fftFlags)
+Fft::Fft(int n, int fftSign, int fftFlags)
     : size(n), sign(fftSign), flags(fftFlags)
 {
     in = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * size);
@@ -10,14 +10,14 @@ fft::fft(int n, int fftSign, int fftFlags)
     p = fftw_plan_dft_1d(size, in, out, sign, flags);
 }
 
-fft::~fft()
+Fft::~Fft()
 {
     fftw_destroy_plan(p);
     fftw_free(in);
     fftw_free(out);
 }
 
-void fft::execute(std::vector<std::complex<double>> &h, std::vector<std::complex<double>> &H)
+void Fft::Execute(std::vector<std::complex<double>> &h, std::vector<std::complex<double>> &H)
 {
     assert(h.size() == size);
     // fill in

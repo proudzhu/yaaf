@@ -4,24 +4,24 @@
 #include <vector>
 #include "common.h"
 
-class IIR2
+class Iir2
 {
 public:
-    IIR2(double freq, double fs = 44100, int ch = 2, FilterType type = PeakingEQ, double q = sqrt(2) / 2, double gain = 0)
+    Iir2(double freq, double fs = 44100, int ch = 2, FilterType type = PeakingEQ, double q = sqrt(2) / 2, double gain = 0)
     {
         a.resize(3, 0);
         b.resize(3, 0);
         x.resize(ch, std::vector<double>(3,0));
         y.resize(ch, std::vector<double>(3,0));
 
-        calcCoeffs(freq, fs, q, gain, type);
+        CalcCoeffs(freq, fs, q, gain, type);
     }
 
-    ~IIR2() {}
+    ~Iir2() {}
 
-    int process(AudioBuffer *inbuf, AudioBuffer *outbuf);
+    int Process(AudioBuffer *inbuf, AudioBuffer *outbuf);
 
-    void reset(void);
+    void Reset(void);
 
 private:
     std::vector<double> a;
@@ -31,7 +31,7 @@ private:
     std::vector<std::vector<double>> x;
     std::vector<std::vector<double>> y;
 
-    void calcCoeffs(double freq, double fs, double q, double gain, FilterType type);
+    void CalcCoeffs(double freq, double fs, double q, double gain, FilterType type);
 };
 
 #endif // IIR2_H

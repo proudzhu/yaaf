@@ -7,20 +7,20 @@
 #include <complex>
 #include "fftw3.h"
 
-class fft
+class Fft
 {
 public:
-    fft(int n) : fft(n, FFTW_FORWARD)
+    Fft(int n) : Fft(n, FFTW_FORWARD)
     { }
 
-    fft(int n, int fftSign) : fft(n, fftSign, FFTW_ESTIMATE)
+    Fft(int n, int fftSign) : Fft(n, fftSign, FFTW_ESTIMATE)
     { }
 
-    fft(int n, int fftSign, int fftFlags);
+    Fft(int n, int fftSign, int fftFlags);
 
-    ~fft();
+    ~Fft();
 
-    void execute(std::vector<std::complex<double>> &h, std::vector<std::complex<double>> &H);
+    void Execute(std::vector<std::complex<double>> &h, std::vector<std::complex<double>> &H);
 
 private:
     int size, sign, flags;

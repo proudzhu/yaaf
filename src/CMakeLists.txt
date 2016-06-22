@@ -4,9 +4,9 @@ include_directories(${yaaf_SOURCE_DIR}/include
 add_library(yaaf
 			common.cpp
 			iir2.cpp
-			combFilter.cpp
+			comb_filter.cpp
 			vibrato.cpp
-			firCommon.cpp
+			fir_common.cpp
 			fir2.cpp
 			fft.cpp
 			window.cpp

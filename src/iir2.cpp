@@ -3,7 +3,7 @@
 #include <cassert>
 #include "iir2.h"
 
-int IIR2::process(AudioBuffer *inbuf, AudioBuffer *outbuf)
+int Iir2::Process(AudioBuffer *inbuf, AudioBuffer *outbuf)
 {
     assert(inbuf->ch == outbuf->ch);
     assert(inbuf->fs == outbuf->fs);
@@ -28,7 +28,7 @@ int IIR2::process(AudioBuffer *inbuf, AudioBuffer *outbuf)
     return inbuf->samples;
 }
 
-void IIR2::calcCoeffs(double freq, double fs, double q, double gain, FilterType type)
+void Iir2::CalcCoeffs(double freq, double fs, double q, double gain, FilterType type)
 {
     double A = pow(10, gain / 40);
     double w0 = 2 * M_PI * freq / fs;
@@ -88,7 +88,7 @@ void IIR2::calcCoeffs(double freq, double fs, double q, double gain, FilterType 
     a[0] = 1.0;
 }
 
-void IIR2::reset(void)
+void Iir2::Reset(void)
 {
     std::for_each(x.begin(), x.end(), [](auto &h) {
         std::fill(h.begin(), h.end(), 0);

@@ -5,14 +5,14 @@
 #include "fft.h"
 #include "window.h"
 
-fir2::fir2(int n, std::vector<double> f, std::vector<double> a,
+Fir2::Fir2(int n, std::vector<double> f, std::vector<double> a,
            std::vector<double> window)
 {
-    calcCoeffs(n, f, a, window);
+    CalcCoeffs(n, f, a, window);
 }
 
 /* only impl calcCoeffs(n, f, a) */
-void fir2::calcCoeffs(int n, std::vector<double> f, std::vector<double> a,
+void Fir2::CalcCoeffs(int n, std::vector<double> f, std::vector<double> a,
                       std::vector<double> window)
 {
     int t = f.size();
@@ -77,9 +77,9 @@ void fir2::calcCoeffs(int n, std::vector<double> f, std::vector<double> a,
         H[j] = conj(H[2*(npt-1)-j]);
     }
 
-    std::unique_ptr<fft> ifft = std::make_unique<fft>(H.size(), FFTW_BACKWARD);
+    std::unique_ptr<Fft> ifft = std::make_unique<Fft>(H.size(), FFTW_BACKWARD);
     std::vector<std::complex<double>> ht(H.size(), 0);
-    ifft->execute(H, ht);
+    ifft->Execute(H, ht);
 
     b.resize(n, 0);
     for (int j = 0; j < n; j++) {

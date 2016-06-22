@@ -4,10 +4,10 @@
 #include <vector>
 #include "common.h"
 
-class vibrato
+class Vibrato
 {
 public:
-    vibrato(double fs, double freq, double w, int ch = 1)
+    Vibrato(double fs, double freq, double w, int ch = 1)
         : sampleRate(fs), modFreq(freq), width(w), delay(w),
           widthM(round(width * fs)), delayM(round(delay * fs)),
           modFM(modFreq / sampleRate)
@@ -16,9 +16,9 @@ public:
         delayLine.resize(ch, std::vector<double>(l, 0));
     }
 
-    int process(AudioBuffer *inbuf, AudioBuffer *outbuf);
+    int Process(AudioBuffer *inbuf, AudioBuffer *outbuf);
 
-    void reset(void);
+    void Reset(void);
 
 private:
     double sampleRate;
@@ -32,7 +32,7 @@ private:
 
     std::vector<std::vector<double>> delayLine;
 
-    void updateDelayLine(double xh, int ch);
+    void UpdateDelayLine(double xh, int ch);
 };
 
 #endif // VIBRATO_H

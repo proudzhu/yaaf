@@ -1,7 +1,7 @@
 #include <cassert>
 #include "vibrato.h"
 
-void vibrato::updateDelayLine(double xh, int ch)
+void Vibrato::UpdateDelayLine(double xh, int ch)
 {
     auto &v = delayLine[ch];
     int i;
@@ -12,7 +12,7 @@ void vibrato::updateDelayLine(double xh, int ch)
     v[0] = xh;
 }
 
-int vibrato::process(AudioBuffer *inbuf, AudioBuffer *outbuf)
+int Vibrato::Process(AudioBuffer *inbuf, AudioBuffer *outbuf)
 {
     assert(inbuf->ch == outbuf->ch);
     assert(inbuf->fs == outbuf->fs);
@@ -21,7 +21,7 @@ int vibrato::process(AudioBuffer *inbuf, AudioBuffer *outbuf)
     for (int i = 0; i < inbuf->samples / inbuf->ch; i++) {
         for (int j = 0; j < inbuf->ch; j++) {
             double xh = inbuf->buf[i * inbuf->ch + j];
-            updateDelayLine(xh, j);
+            UpdateDelayLine(xh, j);
 
             double mod = sin(modFM * 2 * M_PI * i);
             double zeiger = 1 + delayM + widthM * mod;
@@ -33,7 +33,7 @@ int vibrato::process(AudioBuffer *inbuf, AudioBuffer *outbuf)
     }
 }
 
-void vibrato::reset(void)
+void Vibrato::Reset(void)
 {
     return;
 }

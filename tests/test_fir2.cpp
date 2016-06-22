@@ -14,7 +14,7 @@ TEST_CASE("fir2") {
                           -0.219281497639320,-0.000216611676779372,
                           -6.12745098047783e-07};
 
-    auto ff = std::make_unique<fir2>(8, f, a);
+    auto ff = std::make_unique<Fir2>(8, f, a);
 
     REQUIRE(check_vector(ff->b,result) == true);
 }
