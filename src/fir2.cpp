@@ -81,8 +81,10 @@ void Fir2::CalcCoeffs(int n, std::vector<double> f, std::vector<double> a,
     std::vector<std::complex<double>> ht(H.size(), 0);
     ifft->Execute(H, ht);
 
-    b.resize(n, 0);
+    std::vector<double> b(n, 0);
     for (int j = 0; j < n; j++) {
         b[j] = ht[j].real() * window[j];
     }
+
+    SetCoeffs(b);
 }

@@ -17,17 +17,6 @@ typedef struct
     int16_t *buf;
 } AudioBuffer;
 
-typedef enum
-{
-    NONE,
-    HPF,
-    LPF,
-    LowShelf,
-    HighShelf,
-    PeakingEQ,
-    FilterTypeNum
-} FilterType;
-
 /* check if a vector is nondecreasing */
 bool isNonDecrease(std::vector<double> v);
 

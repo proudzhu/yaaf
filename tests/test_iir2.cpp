@@ -6,7 +6,7 @@ int main(int argc, char **argv)
 {
     double fs = 44100;
     double freq = 300;
-    FilterType type = HPF;
+    Iir2::FilterType type = Iir2::kHPF;
     int16_t buf[1024];
 
     AudioBuffer *inbuf = new AudioBuffer();

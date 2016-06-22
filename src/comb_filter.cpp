@@ -4,7 +4,7 @@
 
 void CombFilter::UpdateDelayLine(double xh, int ch)
 {
-    auto &v = delayLine[ch];
+    auto &v = delayline_[ch];
     int i;
 
     // delayLine = [xh, delayLine(1:M-1)]
@@ -21,10 +21,10 @@ int CombFilter::Process(AudioBuffer *inbuf, AudioBuffer *outbuf)
 
     for (int i = 0; i < inbuf->samples / inbuf->ch; i++) {
         for (int j = 0; j < inbuf->ch; j++) {
-            double xh = inbuf->buf[i * inbuf->ch + j] + feedBack * delayLine[j][delayM - 1];
+            double xh = inbuf->buf[i * inbuf->ch + j] + feedback_ * delayline_[j][delay_ - 1];
             UpdateDelayLine(xh, j);
 
-            double tmp = feedForward * delayLine[j][delayM - 1] + blend * xh;
+            double tmp = feedforward_ * delayline_[j][delay_ - 1] + blend_ * xh;
             outbuf->buf[i * outbuf->ch + j] = (int16_t)std::min(32767, std::max(-32768, (int32_t)tmp));
         }
     }
@@ -32,7 +32,7 @@ int CombFilter::Process(AudioBuffer *inbuf, AudioBuffer *outbuf)
 
 void CombFilter::Reset(void)
 {
-    std::for_each(delayLine.begin(), delayLine.end(), [](auto &h) {
+    std::for_each(delayline_.begin(), delayline_.end(), [](auto &h) {
         std::fill(h.begin(), h.end(), 0);
     });
 }

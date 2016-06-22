@@ -8,12 +8,12 @@ class Vibrato
 {
 public:
     Vibrato(double fs, double freq, double w, int ch = 1)
-        : sampleRate(fs), modFreq(freq), width(w), delay(w),
-          widthM(round(width * fs)), delayM(round(delay * fs)),
-          modFM(modFreq / sampleRate)
+        : samplerate_(fs), modfreq_(freq), width_(w), delay_(w),
+          width_m_(round(width_ * fs)), delay_m_(round(delay_ * fs)),
+          modfreq_m_(modfreq_ / samplerate_)
     {
-        int l = 2 + delayM + widthM * 2;
-        delayLine.resize(ch, std::vector<double>(l, 0));
+        int l = 2 + delay_m_ + width_m_ * 2;
+        delayline_.resize(ch, std::vector<double>(l, 0));
     }
 
     int Process(AudioBuffer *inbuf, AudioBuffer *outbuf);
@@ -21,16 +21,16 @@ public:
     void Reset(void);
 
 private:
-    double sampleRate;
-    double modFreq;
-    double width;
-    double delay;
+    double samplerate_;
+    double modfreq_;
+    double width_;
+    double delay_;
 
-    double widthM;
-    double delayM;
-    double modFM;
+    double width_m_;
+    double delay_m_;
+    double modfreq_m_;
 
-    std::vector<std::vector<double>> delayLine;
+    std::vector<std::vector<double>> delayline_;
 
     void UpdateDelayLine(double xh, int ch);
 };

@@ -15,12 +15,14 @@ public:
 
     void Reset(void);
 
-    void SetCoeffs(std::vector<double> b);
+    std::vector<double> GetCoeffs() const;
 
-    std::vector<double> b;
+    void SetCoeffs(const std::vector<double> &b);
 
 private:
-    std::vector<std::vector<double>> delayLine;
+    std::vector<double> b_;
+
+    std::vector<std::vector<double>> delayline_;
 
     void UpdateDelayLine(double xh, int ch);
 };

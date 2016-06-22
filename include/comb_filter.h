@@ -10,9 +10,9 @@ class CombFilter
 {
 public:
     CombFilter(int delay, double bl, double fb, double ff, int ch = 1)
-        : delayM(delay), blend(bl), feedBack(fb), feedForward(ff)
+        : delay_(delay), blend_(bl), feedback_(fb), feedforward_(ff)
     {
-        delayLine.resize(ch, std::vector<double>(delayM, 0));
+        delayline_.resize(ch, std::vector<double>(delay_, 0));
     }
 
     ~CombFilter() {}
@@ -22,12 +22,12 @@ public:
     void Reset(void);
 
 private:
-    int delayM;
-    double blend;
-    double feedBack;
-    double feedForward;
+    int delay_;
+    double blend_;
+    double feedback_;
+    double feedforward_;
 
-    std::vector<std::vector<double>> delayLine;
+    std::vector<std::vector<double>> delayline_;
 
     void UpdateDelayLine(double xh, int ch);
 };

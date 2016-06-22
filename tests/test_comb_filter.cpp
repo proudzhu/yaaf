@@ -6,7 +6,6 @@ int main(int argc, char **argv)
 {
     double fs = 44100;
     double freq = 300;
-    FilterType type = HPF;
     int16_t bufin[1024];
     int16_t bufout[1024];
     double delay = 0.01;

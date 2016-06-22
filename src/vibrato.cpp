@@ -3,7 +3,7 @@
 
 void Vibrato::UpdateDelayLine(double xh, int ch)
 {
-    auto &v = delayLine[ch];
+    auto &v = delayline_[ch];
     int i;
 
     // delayLine = [xh, delayLine(1:M-1)]
@@ -23,10 +23,10 @@ int Vibrato::Process(AudioBuffer *inbuf, AudioBuffer *outbuf)
             double xh = inbuf->buf[i * inbuf->ch + j];
             UpdateDelayLine(xh, j);
 
-            double mod = sin(modFM * 2 * M_PI * i);
-            double zeiger = 1 + delayM + widthM * mod;
+            double mod = sin(modfreq_m_ * 2 * M_PI * i);
+            double zeiger = 1 + delay_m_ + width_m_ * mod;
             double frac = zeiger - floor(zeiger);
-            double tmp = delayLine[j][i+1] * frac + delayLine[j][i] * (1 - frac);
+            double tmp = delayline_[j][i+1] * frac + delayline_[j][i] * (1 - frac);
 
             outbuf->buf[i * outbuf->ch + j] = (int16_t)std::min(32767, std::max(-32768, (int32_t)tmp));
         }

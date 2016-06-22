@@ -23,9 +23,9 @@ public:
     void Execute(std::vector<std::complex<double>> &h, std::vector<std::complex<double>> &H);
 
 private:
-    int size, sign, flags;
-    fftw_complex *in, *out;
-    fftw_plan p;
+    int size_, sign_, flags_;
+    fftw_complex *in_, *out_;
+    fftw_plan p_;
 };
 
 #endif // FFT_H

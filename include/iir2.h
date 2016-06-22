@@ -7,12 +7,23 @@
 class Iir2
 {
 public:
-    Iir2(double freq, double fs = 44100, int ch = 2, FilterType type = PeakingEQ, double q = sqrt(2) / 2, double gain = 0)
+    typedef enum
     {
-        a.resize(3, 0);
-        b.resize(3, 0);
-        x.resize(ch, std::vector<double>(3,0));
-        y.resize(ch, std::vector<double>(3,0));
+        kNone,
+        kHPF,
+        kLPF,
+        kLowShelf,
+        kHighShelf,
+        kPeakingEQ,
+        kFilterTypeNum
+    } FilterType;
+
+    Iir2(double freq, double fs = 44100, int ch = 2, FilterType type = kPeakingEQ, double q = sqrt(2) / 2, double gain = 0)
+    {
+        a_.resize(3, 0);
+        b_.resize(3, 0);
+        x_.resize(ch, std::vector<double>(3,0));
+        y_.resize(ch, std::vector<double>(3,0));
 
         CalcCoeffs(freq, fs, q, gain, type);
     }
@@ -24,12 +35,12 @@ public:
     void Reset(void);
 
 private:
-    std::vector<double> a;
-    std::vector<double> b;
+    std::vector<double> a_;
+    std::vector<double> b_;
 
     // history data
-    std::vector<std::vector<double>> x;
-    std::vector<std::vector<double>> y;
+    std::vector<std::vector<double>> x_;
+    std::vector<std::vector<double>> y_;
 
     void CalcCoeffs(double freq, double fs, double q, double gain, FilterType type);
 };

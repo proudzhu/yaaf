@@ -16,5 +16,5 @@ TEST_CASE("fir2") {
 
     auto ff = std::make_unique<Fir2>(8, f, a);
 
-    REQUIRE(check_vector(ff->b,result) == true);
+    REQUIRE(check_vector(ff->GetCoeffs(),result) == true);
 }
