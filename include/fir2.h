@@ -2,6 +2,7 @@
 #define FIR2_H
 
 #include <vector>
+#include <memory>
 #include "firCommon.h"
 
 class fir2 : public firCommon
@@ -16,7 +17,6 @@ public:
     ~fir2() {}
 
 private:
-
     void calcCoeffs(int n, std::vector<double> f, std::vector<double> a, std::vector<double> window);
 };
 

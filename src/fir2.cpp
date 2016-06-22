@@ -77,7 +77,9 @@ void fir2::calcCoeffs(int n, std::vector<double> f, std::vector<double> a,
         H[j] = conj(H[2*(npt-1)-j]);
     }
 
-    std::vector<std::complex<double>> ht = ifft(H);
+    std::unique_ptr<fft> ifft = std::make_unique<fft>(H.size(), FFTW_BACKWARD);
+    std::vector<std::complex<double>> ht(H.size(), 0);
+    ifft->execute(H, ht);
 
     b.resize(n, 0);
     for (int j = 0; j < n; j++) {

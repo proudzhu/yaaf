@@ -20,3 +20,6 @@ target_link_libraries(test_fir test_main yaaf)
 
 add_executable(test_fir2 test_fir2.cpp)
 target_link_libraries(test_fir2 test_main yaaf fftw3 m)
+
+add_executable(test_fft test_fft.cpp)
+target_link_libraries(test_fft test_main yaaf fftw3 m)
