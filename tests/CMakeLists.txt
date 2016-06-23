@@ -23,3 +23,6 @@ target_link_libraries(test_fir2 test_main yaaf fftw3 m)
 
 add_executable(test_fft test_fft.cpp)
 target_link_libraries(test_fft test_main yaaf fftw3 m)
+
+add_executable(test_zero_crossing test_zero_crossing.cpp)
+target_link_libraries(test_zero_crossing test_main yaaf)
