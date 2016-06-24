@@ -11,4 +11,5 @@ add_library(yaaf
 			fft.cpp
 			window.cpp
 			zero_crossing.cpp
+			lpc.cpp
 		   )

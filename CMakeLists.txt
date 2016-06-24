@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.1.0)
 
-project(yaaf CXX)
+project(yaaf)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 
@@ -14,3 +14,4 @@ add_test(NAME test_fft COMMAND test_fft)
 add_test(NAME test_fir COMMAND test_fir)
 add_test(NAME test_fir2 COMMAND test_fir2)
 add_test(NAME test_zero_crossing COMMAND test_zero_crossing)
+add_test(NAME test_lpc COMMAND test_lpc)
