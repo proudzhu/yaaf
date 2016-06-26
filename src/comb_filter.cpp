@@ -28,6 +28,8 @@ int CombFilter::Process(AudioBuffer *inbuf, AudioBuffer *outbuf)
             outbuf->buf[i * outbuf->ch + j] = (int16_t)std::min(32767, std::max(-32768, (int32_t)tmp));
         }
     }
+
+    return inbuf->samples;
 }
 
 void CombFilter::Reset(void)
